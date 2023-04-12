@@ -1,7 +1,53 @@
+let vertex1;
+let vertex2;
+let vertex3;
+let area;
+
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(600, 600);
 }
 
 function draw() {
   background(220);
+  translate(0, 600);
+  scale(1, -1);
+  vertex1 = new Pin(300, 500);
+  vertex2 = new Pin(100, 100);
+  vertex3 = new Pin(500, 100);
+
+  area = areaCalculator(vertex1.x, vertex1.y
+    , vertex2.x, vertex2.y
+    , vertex3.x, vertex3.y);
+
+  vertex1.drawPin();
+  vertex2.drawPin();
+  vertex3.drawPin();
+  
+}
+
+function PinGenerator(){
+  let inside;
+  do{
+    let x = Math.random(1, 599);
+    let y = Math.random(1, 599);
+
+    inside = isInside(x, y);
+    console.log(inside)
+    if(inside){
+      console.log("inside if...");
+      return( new Pin(x, y));
+    }
+  }while(!inside);
+}
+
+function isInside(x, y){
+  let A1 = areaCalculator(x, y, vertex2.x, vertex2.y, vertex3.x, vertex3.y);
+  let A2 = areaCalculator(vertex1.x, vertex1.y, x, y, vertex3.x, vertex3.y);
+  let A3 = areaCalculator(vertex1.x, vertex1.y, vertex2.x, vertex2.y, x, y);
+	
+  return (area == A1 + A2 + A3);
+}
+
+function areaCalculator(x1, y1, x2, y2, x3, y3){
+  return Math.abs(((x1*(y2-y3))+(x2*(y3-y1))+(x3*(y1-y2)))/2);
 }
