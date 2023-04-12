@@ -5,7 +5,7 @@ class Pin{
     }
   
     drawPin(){
-      strokeWeight(12);
+      strokeWeight(2);
       // stroke('purple');
       point(this.x, this.y);
     }

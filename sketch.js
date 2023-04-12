@@ -5,10 +5,10 @@ let area;
 
 function setup() {
   createCanvas(600, 600);
+  background(220);
 }
 
 function draw() {
-  background(220);
   translate(0, 600);
   scale(1, -1);
   vertex1 = new Pin(300, 500);
@@ -22,17 +22,18 @@ function draw() {
   vertex1.drawPin();
   vertex2.drawPin();
   vertex3.drawPin();
-  
+
+  let pin = PinGenerator();
+  pin.drawPin();
 }
 
 function PinGenerator(){
-  let inside;
+  let inside = false;
   do{
-    let x = Math.random(1, 599);
-    let y = Math.random(1, 599);
-
-    inside = isInside(x, y);
-    console.log(inside)
+    let x = random(600);
+    let y = random(600);
+  
+    let inside = isInside(x, y);
     if(inside){
       console.log("inside if...");
       return( new Pin(x, y));
