@@ -24,11 +24,13 @@ function draw() {
   vertex3.drawPin();
 
   let pin = PinGenerator();
-  // pin.drawPin();
-
-  let vertex = random([vertex1, vertex2, vertex3]);
-  let midPoint = getMidpoint(pin, vertex);
-  midPoint.drawPin();
+ 
+  for(let i = 1 ; i < 25000; i++){
+    let vertex = random([vertex1, vertex2, vertex3]);
+    let midPoint = getMidpoint(pin, vertex);
+    midPoint.drawPin();
+    pin = midPoint;
+  }
 }
 
 function PinGenerator(){
