@@ -24,7 +24,11 @@ function draw() {
   vertex3.drawPin();
 
   let pin = PinGenerator();
-  pin.drawPin();
+  // pin.drawPin();
+
+  let vertex = random([vertex1, vertex2, vertex3]);
+  let midPoint = getMidpoint(pin, vertex);
+  midPoint.drawPin();
 }
 
 function PinGenerator(){
@@ -35,7 +39,6 @@ function PinGenerator(){
   
     let inside = isInside(x, y);
     if(inside){
-      console.log("inside if...");
       return( new Pin(x, y));
     }
   }while(!inside);
@@ -51,4 +54,8 @@ function isInside(x, y){
 
 function areaCalculator(x1, y1, x2, y2, x3, y3){
   return Math.abs(((x1*(y2-y3))+(x2*(y3-y1))+(x3*(y1-y2)))/2);
+}
+
+function getMidpoint(pin1, pin2){
+  return new Pin(((pin1.x + pin2.x)/2), ((pin1.y + pin2.y)/2));
 }
