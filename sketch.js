@@ -2,6 +2,7 @@ let vertex1;
 let vertex2;
 let vertex3;
 let area;
+let pin;
 
 function setup() {
   createCanvas(600, 600);
@@ -23,14 +24,13 @@ function draw() {
   vertex2.drawPin();
   vertex3.drawPin();
 
-  let pin = PinGenerator();
- 
-  for(let i = 1 ; i < 25000; i++){
+  if(!pin){
+    pin = PinGenerator();
+  }
     let vertex = random([vertex1, vertex2, vertex3]);
     let midPoint = getMidpoint(pin, vertex);
     midPoint.drawPin();
     pin = midPoint;
-  }
 }
 
 function PinGenerator(){
